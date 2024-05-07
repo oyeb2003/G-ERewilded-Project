@@ -4,13 +4,21 @@ All codes used for the Genetic by environment interaction analysis and different
 If  you need more information about this - please contact - Dr. Andrea Graham
 
 setwd("~/Documents/live DATA/Stony Ford/2021 for R")
+
 library(tidyverse)
+
 library(MASS)
+
 Fig_8C<-read.csv("Worms_scRNA.csv",sep=",",dec=".",header=T)
+
 Fig_8C$Genotype<-as.factor(Fig_5C$Genotype)
+
 Fig_8C$Genotype<-relevel(Fig_5C$Genotype,ref = "C57")
+
 Worms_RNA_PC2<-glm.nb(Worm.count~Genotype+Location+PC2,data=Fig_8C)
+
 summary(Worms_RNA_PC2)
+
 drop1(Worms_RNA_PC2,test="Chisq")
 
 model_sumPC2 <- summary(Worms_RNA_PC2)
